@@ -19,8 +19,8 @@ const SignUp = () => {
   };
 
   return (
-    <div>
-      <h2>Sign Up</h2>
+    <div class="signup-container">
+      <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
         <input type="email" ref={emailRef} placeholder="Email" required />
         <input type="password" ref={passwordRef} placeholder="Password" required />

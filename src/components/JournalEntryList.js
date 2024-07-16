@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { db } from '../firebase/config';
 import { collection, query, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 
+
 const JournalEntryList = ({ updateProgress, setEditingEntry, searchQuery }) => {
   const [entries, setEntries] = useState([]);
 

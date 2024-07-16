@@ -2,6 +2,7 @@ import React, { useRef } from 'react';
 import { auth } from '../firebase/config';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
+import "./Login.css";
 
 const Login = () => {
   const emailRef = useRef('');
@@ -19,8 +20,8 @@ const Login = () => {
   };
 
   return (
-    <div>
-      <h2>Login</h2>
+    <div class= "login-container">
+      <h1>Login</h1>
       <form onSubmit={handleSubmit}>
         <input type="email" ref={emailRef} placeholder="Email" required />
         <input type="password" ref={passwordRef} placeholder="Password" required />
