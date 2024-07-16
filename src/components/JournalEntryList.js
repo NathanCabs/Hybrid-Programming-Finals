@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { db } from '../firebase/config';
 import { collection, query, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
-
+import "./Entries.css";
 
 const JournalEntryList = ({ updateProgress, setEditingEntry, searchQuery }) => {
   const [entries, setEntries] = useState([]);
@@ -32,7 +32,7 @@ const JournalEntryList = ({ updateProgress, setEditingEntry, searchQuery }) => {
   );
 
   return (
-    <div>
+    <div class="journal-entry">
       {filteredEntries.map(entry => (
         <div key={entry.id}>
           <p>{entry.text}</p>

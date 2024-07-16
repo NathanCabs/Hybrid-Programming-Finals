@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { auth, db } from '../firebase/config';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
+import "./Form.css";
 
 const JournalForm = ({ updateProgress, editingEntry, setEditingEntry }) => {
   const [newEntry, setNewEntry] = useState('');
@@ -38,6 +39,7 @@ const JournalForm = ({ updateProgress, editingEntry, setEditingEntry }) => {
   };
 
   return (
+    <div class="journal-form">
     <form onSubmit={handleSubmit}>
       <textarea
         value={newEntry}
@@ -53,6 +55,7 @@ const JournalForm = ({ updateProgress, editingEntry, setEditingEntry }) => {
       />
       <button type="submit">{editingEntry ? 'Update Entry' : 'Add Entry'}</button>
     </form>
+    </div>
   );
 };
 

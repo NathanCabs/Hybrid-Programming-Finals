@@ -1,4 +1,5 @@
 import React, { useRef } from 'react';
+import "./Search.css";
 
 const SearchBar = ({ setSearchQuery }) => {
   const searchRef = useRef('');
@@ -8,7 +9,7 @@ const SearchBar = ({ setSearchQuery }) => {
   };
 
   return (
-    <div>
+    <div class="search-bar">
       <input 
         type="text" 
         placeholder="Search entries..." 

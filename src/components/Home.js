@@ -5,6 +5,7 @@ import JournalForm from './JournalForm';
 import JournalEntryList from './JournalEntryList';
 // import ProgressTracker from './ProgressTracker';
 import SearchBar from './SearchBar';
+import "./Home.css";
 
 
 const Home = () => {
@@ -18,9 +19,9 @@ const Home = () => {
   };
 
   return (
-    <div>
+    <div class="home">
       <h2>Journal Entries</h2>
-      <button onClick={() => signOut(auth)}>Sign Out</button>
+      <button class="sign-out" onClick={() => signOut(auth)}>Sign Out</button>
       <SearchBar setSearchQuery={setSearchQuery} />
       <JournalForm updateProgress={updateProgress} editingEntry={editingEntry} setEditingEntry={setEditingEntry} />
       <JournalEntryList updateProgress={updateProgress} setEditingEntry={setEditingEntry} searchQuery={searchQuery}/>

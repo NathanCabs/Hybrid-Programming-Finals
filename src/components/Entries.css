@@ -1,0 +1,57 @@
+/* style.css */
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+  background-color: #f0f0f0;
+  font-family: Arial, sans-serif;
+}
+
+.journal-entry {
+  width: 100%;
+  max-width: 800px;
+  background-color: #fff;
+  padding: 20px;
+  margin: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.journal-entry div {
+  padding: 15px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
+}
+
+.journal-entry div:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+}
+
+.journal-entry p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+.journal-entry button {
+  padding: 8px 12px;
+  margin-right: 10px;
+  background-color: #007BFF;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.journal-entry button:last-child {
+  margin-right: 0;
+}
+
+.journal-entry button:hover {
+  background-color: #0056b3;
+}
