@@ -1,10 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import Login from './components/Login';
 import SignUp from './components/SignUp';
 import Home from './components/Home';
 import { useAuthState } from 'react-firebase-hooks/auth';
-import { auth } from './firebase/firebase';
+import { auth } from './firebase/config';
 
 function App() {
   const [user, loading] = useAuthState(auth);
@@ -16,17 +16,11 @@ function App() {
   return (
     <Router>
       <div>
-        <Switch>
-          <Route path="/login">
-            {user ? <Redirect to="/" /> : <Login />}
-          </Route>
-          <Route path="/signup">
-            {user ? <Redirect to="/" /> : <SignUp />}
-          </Route>
-          <Route path="/">
-            {user ? <Home /> : <Redirect to="/login" />}
-          </Route>
-        </Switch>
+        <Routes>
+          <Route path="/login" element={user ? <Navigate to="/" /> : <Login />} />
+          <Route path="/signup" element={user ? <Navigate to="/" /> : <SignUp />} />
+          <Route path="/" element={user ? <Home /> : <Navigate to="/login" />} />
+        </Routes>
       </div>
     </Router>
   );

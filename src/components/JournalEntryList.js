@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import { db } from '../firebase/firebase';
+import { db } from '../firebase/config';
 import { collection, query, onSnapshot, deleteDoc, doc } from 'firebase/firestore';
 
-const JournalEntryList = ({ updateProgress, setEditingEntry }) => {
+const JournalEntryList = ({ updateProgress, setEditingEntry, searchQuery }) => {
   const [entries, setEntries] = useState([]);
 
   useEffect(() => {
@@ -13,7 +13,7 @@ const JournalEntryList = ({ updateProgress, setEditingEntry }) => {
       updateProgress(fetchedEntries.length);
     });
     return () => unsubscribe();
-  }, []);
+  }, [updateProgress]);
 
   const handleDelete = async (id) => {
     try {
@@ -25,9 +25,14 @@ const JournalEntryList = ({ updateProgress, setEditingEntry }) => {
     }
   };
 
+  // Filter entries based on search query
+  const filteredEntries = entries.filter(entry => 
+    entry.text.toLowerCase().includes(searchQuery.toLowerCase())
+  );
+
   return (
     <div>
-      {entries.map(entry => (
+      {filteredEntries.map(entry => (
         <div key={entry.id}>
           <p>{entry.text}</p>
           <p>{new Date(entry.date.seconds * 1000).toDateString()}</p>

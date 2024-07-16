@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { auth, db } from '../firebase/firebase';
+import { auth, db } from '../firebase/config';
 import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 
 const JournalForm = ({ updateProgress, editingEntry, setEditingEntry }) => {
