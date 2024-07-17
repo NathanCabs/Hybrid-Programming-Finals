@@ -2,10 +2,11 @@ import React, { useRef } from 'react';
 import "./Search.css";
 
 const SearchBar = ({ setSearchQuery }) => {
-  const searchRef = useRef('');
+  const searchRef = useRef(''); // Reference for search input field
 
+  // Handles the search input
   const handleSearch = () => {
-    setSearchQuery(searchRef.current.value);
+    setSearchQuery(searchRef.current.value); // Update search query
   };
 
   return (

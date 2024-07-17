@@ -5,15 +5,16 @@ import { Link } from 'react-router-dom';
 import "./Login.css";
 
 const Login = () => {
-  const emailRef = useRef('');
-  const passwordRef = useRef('');
+  const emailRef = useRef(''); // Reference for email input 
+  const passwordRef = useRef(''); // Reference for password input
 
+  // Handles the submission for the credentials
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+    const email = emailRef.current.value; // Gets the email from input reference
+    const password = passwordRef.current.value; // Gets the password from input reference
     try {
-      await signInWithEmailAndPassword(auth, email, password);
+      await signInWithEmailAndPassword(auth, email, password); // Firebase authentication
     } catch (error) {
       console.error("Authentication Error: ", error);
     }

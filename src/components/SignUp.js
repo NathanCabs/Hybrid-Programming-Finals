@@ -4,15 +4,16 @@ import { createUserWithEmailAndPassword } from 'firebase/auth';
 import { Link } from 'react-router-dom';
 
 const SignUp = () => {
-  const emailRef = useRef('');
-  const passwordRef = useRef('');
+  const emailRef = useRef(''); // Email Ref
+  const passwordRef = useRef(''); // Password Ref
 
+  // Submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const email = emailRef.current.value;
-    const password = passwordRef.current.value;
+    const email = emailRef.current.value; // Get email
+    const password = passwordRef.current.value; // Get password
     try {
-      await createUserWithEmailAndPassword(auth, email, password);
+      await createUserWithEmailAndPassword(auth, email, password); // Firebase creation of user
     } catch (error) {
       console.error("Authentication Error: ", error);
     }

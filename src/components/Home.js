@@ -9,11 +9,11 @@ import "./Home.css";
 
 
 const Home = () => {
-  const [progress, setProgress] = useState({ entryCount: 0 });
-  const [editingEntry, setEditingEntry] = useState(null);
-  const [searchQuery, setSearchQuery] = useState('');
+  const [progress, setProgress] = useState({ entryCount: 0 }); // Counts the number entries
+  const [editingEntry, setEditingEntry] = useState(null); // Tracks the entry that is currently being edited
+  const [searchQuery, setSearchQuery] = useState(''); // Stores search query
 
-
+  // Update progress based on entry count
   const updateProgress = (entryCount) => {
     setProgress({ entryCount });
   };

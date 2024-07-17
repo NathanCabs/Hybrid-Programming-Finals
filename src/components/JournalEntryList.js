@@ -4,22 +4,26 @@ import { collection, query, onSnapshot, deleteDoc, doc } from 'firebase/firestor
 import "./Entries.css";
 
 const JournalEntryList = ({ updateProgress, setEditingEntry, searchQuery }) => {
-  const [entries, setEntries] = useState([]);
+  const [entries, setEntries] = useState([]); // Holds the journal entries
 
+  // Fetches the entries from the Firestore database
   useEffect(() => {
     const q = query(collection(db, "entries"));
     const unsubscribe = onSnapshot(q, (snapshot) => {
+      // Map Firestore document snapshots to entries array
       const fetchedEntries = snapshot.docs.map(doc => ({ id: doc.id, ...doc.data() }));
-      setEntries(fetchedEntries);
-      updateProgress(fetchedEntries.length);
+      setEntries(fetchedEntries); // Updates entries state
+      updateProgress(fetchedEntries.length); // Update entry count
     });
-    return () => unsubscribe();
+    return () => unsubscribe(); // Unsubscribe from Firestore listener on component unmount
   }, [updateProgress]);
 
+  // Handles the deletion of the entries
   const handleDelete = async (id) => {
     try {
-      await deleteDoc(doc(db, "entries", id));
-      setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id));
+      await deleteDoc(doc(db, "entries", id)); // Deletes entry from Firestore
+      // Update entries by removing the deleted entry
+      setEntries(prevEntries => prevEntries.filter(entry => entry.id !== id)); 
       updateProgress(prevCount => prevCount - 1);
     } catch (error) {
       console.error("Error deleting document: ", error);

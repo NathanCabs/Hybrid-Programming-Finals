@@ -4,35 +4,39 @@ import { collection, addDoc, updateDoc, doc } from 'firebase/firestore';
 import "./Form.css";
 
 const JournalForm = ({ updateProgress, editingEntry, setEditingEntry }) => {
-  const [newEntry, setNewEntry] = useState('');
-  const [entryDate, setEntryDate] = useState(new Date().toISOString().substring(0, 10));
+  const [newEntry, setNewEntry] = useState(''); // State that holds new journal entry
+  const [entryDate, setEntryDate] = useState(new Date().toISOString().substring(0, 10)); // Setting date
 
   useEffect(() => {
     if (editingEntry) {
+      // This is prefilled if the entry already exists and is being edited
       setNewEntry(editingEntry.text);
       setEntryDate(new Date(editingEntry.date.seconds * 1000).toISOString().substring(0, 10));
     }
   }, [editingEntry]);
 
+  // Handles the submission of the entries
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
       if (editingEntry) {
+        // Update existing entry in Firestore
         await updateDoc(doc(db, "entries", editingEntry.id), {
           text: newEntry,
           date: new Date(entryDate),
         });
-        setEditingEntry(null);
+        setEditingEntry(null); // Clears editing after update of entry
       } else {
+        // Adds new entry to Firestore
         await addDoc(collection(db, "entries"), {
           text: newEntry,
           date: new Date(entryDate),
           userId: auth.currentUser.uid,
         });
-        updateProgress(prevCount => prevCount + 1);
+        updateProgress(prevCount => prevCount + 1); // Updates the entry count
       }
-      setNewEntry('');
-      setEntryDate(new Date().toISOString().substring(0, 10));
+      setNewEntry(''); // Clears new entry text after submission
+      setEntryDate(new Date().toISOString().substring(0, 10)); // Reset entry date
     } catch (error) {
       console.error("Error adding document: ", error);
     }
